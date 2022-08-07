@@ -1,4 +1,4 @@
-import { commands, ExtensionContext, languages, window } from 'vscode';
+import { ExtensionContext, languages } from 'vscode';
 import { DecoratorFoldingRangeProvider } from './foldingProvider';
 
 export function activate(context: ExtensionContext) {
