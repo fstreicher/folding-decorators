@@ -13,20 +13,7 @@
     "onLanguage:typescript"
   ],
   "browser": "./dist/web/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "folding-decorators.fold",
-        "title": "Fold",
-        "category": "snapADDY"
-      },
-      {
-        "command": "folding-decorators.unfold",
-        "title": "Unfold",
-        "category": "snapADDY"
-      }
-    ]
-  },
+  "contributes": {},
   "scripts": {
     "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
     "pretest": "npm run compile-web",
