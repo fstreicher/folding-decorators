@@ -1,14 +1,20 @@
 {
   "name": "folding-decorators",
   "displayName": "Folding Decorators",
-  "description": "",
+  "description": "TBD: Some descriptive text",
+  "publisher": "fstreicher",
   "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/fstreicher/folding-decorators"
   },
   "engines": {
-    "vscode": "^1.69.0"
+    "vscode": "^1.70.0"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
   },
   "categories": [
     "Other"
@@ -17,7 +23,45 @@
     "onLanguage:typescript"
   ],
   "browser": "./dist/web/extension.js",
-  "contributes": {},
+  "contributes": {
+    "configuration": {
+      "order": 10,
+      "type": "object",
+      "properties": {
+        "folding-decorators.autoFold": {
+          "type": "boolean",
+          "scope": "application",
+          "default": true,
+          "description": "%settings.autoFold.desc%",
+          "order": 10
+        },
+        "folding-decorators.fold.decorators": {
+          "type": "string",
+          "scope": "application",
+          "enum": [
+            "all decorators",
+            "custom regex"
+          ],
+          "default": "all decorators",
+          "description": "%settings.fold.decorators.desc%",
+          "order": 20
+        },
+        "folding-decorators.customRegex": {
+          "type": "string",
+          "scope": "application",
+          "description": "%settings.customRegex.desc%",
+          "order": 30
+        },
+        "folding-decorators.activationDelay": {
+          "type": "integer",
+          "scope": "application",
+          "default": 2000,
+          "description": "%settings.activationDelay.desc%",
+          "order": 40
+        }
+      }
+    }
+  },
   "scripts": {
     "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=./dist/web/test/suite/index.js",
     "pretest": "npm run compile-web",

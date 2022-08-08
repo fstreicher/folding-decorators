@@ -3,8 +3,9 @@ import {
   FoldingRange,
   FoldingRangeKind,
   FoldingRangeProvider,
-  ProviderResult, 
-  TextDocument
+  ProviderResult,
+  TextDocument,
+  workspace
 } from 'vscode';
 
 
@@ -16,11 +17,13 @@ export class DecoratorFoldingRangeProvider implements FoldingRangeProvider {
   public provideFoldingRanges(document: TextDocument): ProviderResult<Array<FoldingRange>> {
     const ranges: Array<FoldingRange> = [];
     const filteredRanges: Array<FoldingRange> = [];
+    const customRegexFromSettings = workspace.getConfiguration('folding-decorators').get<string>('customRegex');
 
     const text = document.getText();
     const decoratorRegex = /(?:^[ \t]*)(?:(?<=\.\.\.)|(?<!\.))@\w+.*/gm;
-    const customRegex = /^[ \t]*(?:(?<=\.\.\.)|(?<!\.))\@Api\w+/g;
-    const decoratedRegex = /(export)|(public)|(protected)|(private)/g;
+    // const customRegex = /^[ \t]*(?:(?<=\.\.\.)|(?<!\.))@Api\w+/g;
+    const customRegex = new RegExp(`^[ \t]*(?:(?<=\.\.\.)|(?<!\.))${customRegexFromSettings}`, 'gm');
+    const decoratedRegex = /^\s*(export)|(public)|(protected)|(private)/gm;
     const inlineDecoratorRegex = /(?:^[ \t]*)(?:(?<=\.\.\.)|(?<!\.))@\w+\(.*\).+,$/;
 
     const decoratorMatches: Array<RegExpMatchArray> = Array.from(text.matchAll(decoratorRegex));
@@ -30,7 +33,6 @@ export class DecoratorFoldingRangeProvider implements FoldingRangeProvider {
     for (const match of decoratorMatches) {
 
       if (inlineDecoratorRegex.test(match[0])) {
-        console.log('Inline Decorator', match[0]);
         continue;
       }
 
