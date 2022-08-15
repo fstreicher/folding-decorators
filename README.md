@@ -1,22 +1,21 @@
 # Folding Decorators
 
-This extension allows you to collapse decorators on your classes/functions.
-
-## Known Issues
-
-Since the VSCode API only allows for exsting [FoldingRangeKinds](https://code.visualstudio.com/api/references/vscode-api#FoldingRangeKind), I chose to use regions, so decorators will be toggled with the same command (`Un-/Fold All Regions`).
+This extension allows you to collapse decorators on your classes/functions. This should probably work for other languages as well, but is currently scoped to Typescript only.
 
 ## Extension Settings
 
-Future extension, currently not in scope:
-* `folding-decorators.toggleDecorators`:\
-  Choose to toggle all decorators, or just the ones defined by `folding-decorators.custom-regex`
-* `folding-decorators.custom-regex`:\
-  Define a Regex to only collapse selected decorators (eg. `/foo/` to only match those starting with `@Api` to match swagger docs)
+* `folding-decorators.autoFold`:\
+  Enable auto-folding on file open
+* `folding-decorators.decorators`:\
+  Choose to toggle all decorators, or just the ones defined by `folding-decorators.customRegex`
+* `folding-decorators.customRegex`:\
+  Define a RegEx-like selector to only collapse certain decorators.
+* `folding-decorators.activationDelay`:\
+  Set a delay for setting the folding ranges.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Since the VSCode API only offers `Import`, `Comment` and `Region` as [FoldingRangeKind](https://code.visualstudio.com/api/references/vscode-api#FoldingRangeKind) and does not allow to define custom ones, this extension uses `Region`. So if you use `// #region` markers in your code, those will be folded as well.
 
 ## Release Notes
 

@@ -1,9 +1,10 @@
 {
   "name": "folding-decorators",
   "displayName": "Folding Decorators",
-  "description": "TBD: Some descriptive text",
+  "description": "Custom folding ranges",
   "publisher": "fstreicher",
   "version": "0.0.1",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/fstreicher/folding-decorators"
@@ -11,6 +12,11 @@
   "engines": {
     "vscode": "^1.70.0"
   },
+  "galleryBanner": {
+    "color": "#TBD",
+    "theme": "light"
+  },
+  "icon": "TBD",
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
@@ -35,7 +41,7 @@
           "description": "%settings.autoFold.desc%",
           "order": 10
         },
-        "folding-decorators.fold.decorators": {
+        "folding-decorators.decorators": {
           "type": "string",
           "scope": "application",
           "enum": [
@@ -43,7 +49,7 @@
             "custom regex"
           ],
           "default": "all decorators",
-          "description": "%settings.fold.decorators.desc%",
+          "description": "%settings.decorators.desc%",
           "order": 20
         },
         "folding-decorators.customRegex": {
@@ -55,7 +61,7 @@
         "folding-decorators.activationDelay": {
           "type": "integer",
           "scope": "application",
-          "default": 2000,
+          "default": 1000,
           "description": "%settings.activationDelay.desc%",
           "order": 40
         }

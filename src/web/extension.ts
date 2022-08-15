@@ -1,14 +1,21 @@
-import { commands, ExtensionContext, languages, TextDocument, window, workspace } from 'vscode';
+import { commands, Disposable, ExtensionContext, languages, TextDocument, window, workspace } from 'vscode';
 import { DecoratorFoldingRangeProvider } from './foldingProvider';
 
 const sbiFold = window.createStatusBarItem(1);
 const sbiUnfold = window.createStatusBarItem(1);
-
+let $provider = new Disposable(() => { });
 
 
 export function activate(context: ExtensionContext) {
-  const ACTIVATION_DELAY = workspace.getConfiguration('')?.get<number>('activation-delay') ?? 2000;
+  const ACTIVATION_DELAY = workspace.getConfiguration('folding-decorators')?.get<number>('activation-delay') ?? 2000;
   setTimeout(() => setup(context), ACTIVATION_DELAY);
+
+  const disposable = workspace.onDidChangeConfiguration(change => {
+    if (change.affectsConfiguration('folding-decorators')) {
+      setup(context);
+    }
+  });
+  context.subscriptions.push(disposable);
 }
 
 
@@ -20,10 +27,11 @@ export function deactivate(): Promise<void> {
 
 
 function setup(context: ExtensionContext) {
-  console.log('Registering DecoratorFoldingRangeProvider');
+  $provider.dispose();
 
+  console.debug('Registering DecoratorFoldingRangeProvider');
   const decoratorFoldingRangeProvider = new DecoratorFoldingRangeProvider();
-  languages.registerFoldingRangeProvider('typescript', decoratorFoldingRangeProvider);
+  $provider = languages.registerFoldingRangeProvider('typescript', decoratorFoldingRangeProvider);
 
   setupAutoFold(context);
   foldDocument();
@@ -64,10 +72,9 @@ function setupAutoFold(context: ExtensionContext) {
 
 
 function foldDocument() {
-  const config = workspace.getConfiguration('folding-decorators');
-  const autoFold = config.get<boolean>('autoFold') ?? false;
+  const autoFold = workspace.getConfiguration('folding-decorators')?.get<boolean>('autoFold') ?? false;
 
   if (autoFold) {
-    void commands.executeCommand('editor.foldAllRegions');
+    commands.executeCommand('editor.foldAllMarkerRegions');
   }
 } 
