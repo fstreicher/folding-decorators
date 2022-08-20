@@ -3,7 +3,7 @@
   "displayName": "Folding Decorators",
   "description": "Custom folding ranges",
   "publisher": "fstreicher",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
