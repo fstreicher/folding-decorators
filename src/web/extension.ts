@@ -1,5 +1,13 @@
-import { commands, Disposable, ExtensionContext, languages, TextDocument, window, workspace } from 'vscode';
-import { DecoratorFoldingRangeProvider } from './foldingProvider';
+import {
+  commands,
+  Disposable,
+  ExtensionContext,
+  languages,
+  TextDocument,
+  window,
+  workspace
+} from 'vscode';
+import { DecoratorFoldingRangeProvider } from './folding-provider';
 
 const sbiFold = window.createStatusBarItem(1);
 const sbiUnfold = window.createStatusBarItem(1);

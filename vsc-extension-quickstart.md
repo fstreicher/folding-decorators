@@ -1,31 +1,8 @@
 # Welcome to your VS Code Extension
 
-## What's in the folder
-
-* This folder contains all of the files necessary for your web extension.
-* `package.json` * this is the manifest file in which you declare your extension and command.
-* `src/web/extension.ts` * this is the main file for the browser
-* `webpack.config.js` * the webpack config file for the web main
-
 ## Setup
 
 * install the recommended extensions (amodio.tsl-problem-matcher and dbaeumer.vscode-eslint)
-
-## Get up and running the Web Extension
-
-* Run `npm install`.
-* Place breakpoints in `src/web/extension.ts`.
-* Debug via F5 (Run Web Extension).
-* Execute extension code via `F1 > Hello world`.
-
-## Make changes
-
-* You can relaunch the extension from the debug toolbar after changing code in `src/web/extension.ts`.
-* You can also reload (`Ctrl+R` or `Cmd+R` on Mac) the VS Code window with your extension to load your changes.
-
-## Explore the API
-
-* You can open the full set of our API when you open the file `node_modules/@types/vscode/index.d.ts`.
 
 ## Run tests
 
