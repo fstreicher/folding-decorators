@@ -1,6 +1,6 @@
 {
   "settings.autoFold.desc": "Enable auto-folding on file open",
   "settings.decorators.desc": "Choose how folding ranges are set up",
-  "settings.customRegex.desc": "Define a RegEx to only collapse selected decorators (eg. @Api to only match swagger docs starting with `@Api`)",
+  "settings.customSelector.desc": "Define a Selector to only collapse selected decorators (eg. @Api to only match swagger docs starting with `@Api`)",
   "settings.activationDelay.desc": "Set a delay for setting the folding ranges. Increase if ranges are not applied correctly."
 }

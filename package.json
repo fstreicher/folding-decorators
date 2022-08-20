@@ -13,10 +13,10 @@
     "vscode": "^1.70.0"
   },
   "galleryBanner": {
-    "color": "#TBD",
-    "theme": "light"
+    "color": "#005f6a",
+    "theme": "dark"
   },
-  "icon": "TBD",
+  "icon": "icon.png",
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
@@ -52,10 +52,10 @@
           "description": "%settings.decorators.desc%",
           "order": 20
         },
-        "folding-decorators.customRegex": {
+        "folding-decorators.customSelector": {
           "type": "string",
           "scope": "application",
-          "description": "%settings.customRegex.desc%",
+          "description": "%settings.customSelector.desc%",
           "order": 30
         },
         "folding-decorators.activationDelay": {
@@ -69,8 +69,6 @@
     }
   },
   "scripts": {
-    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=./dist/web/test/index.js",
-    "pretest": "npm run compile-web",
     "vscode:prepublish": "npm run package-web",
     "compile-web": "webpack",
     "watch-web": "webpack --watch",
@@ -79,15 +77,13 @@
     "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
   },
   "devDependencies": {
-    "@types/mocha": "^9.1.1",
-    "@types/vscode": "^1.69.0",
-    "@types/webpack-env": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^5.31.0",
-    "@typescript-eslint/parser": "^5.31.0",
+    "@types/vscode": "^1.70.0",
+    "@types/webpack-env": "^1.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
     "@vscode/test-web": "^0.0.29",
     "assert": "^2.0.0",
-    "eslint": "^8.20.0",
-    "mocha": "^10.0.0",
+    "eslint": "^8.22.0",
     "process": "^0.11.10",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",

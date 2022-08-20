@@ -30,7 +30,7 @@ export class DecoratorFoldingRangeProvider implements FoldingRangeProvider {
 
 
   public updateCustomRegex(): void {
-    this.customRegexFromSettings = workspace.getConfiguration('folding-decorators').get<string>('customRegex');
+    this.customRegexFromSettings = workspace.getConfiguration('folding-decorators').get<string>('customSelector');
     this.customRegex = new RegExp(`^[ \\t]*(?:(?<=\\.\\.\\.)|(?<!\\.))${this.customRegexFromSettings}\\w+.+`);
     this.customRegexGlobal = new RegExp(`^[ \\t]*(?:(?<=\\.\\.\\.)|(?<!\\.))${this.customRegexFromSettings}\\w+.+`, 'gm');
   }
@@ -59,7 +59,7 @@ export class DecoratorFoldingRangeProvider implements FoldingRangeProvider {
     document: TextDocument,
     decoratorMatches: Array<RegExpMatchArray>,
     decoratedMatches: Array<RegExpMatchArray>
-  ) {
+  ): Array<FoldingRange> {
     const ranges: Array<FoldingRange> = [];
     const filteredRanges: Array<FoldingRange> = [];
 
@@ -104,20 +104,20 @@ export class DecoratorFoldingRangeProvider implements FoldingRangeProvider {
 
 
 
-  private async setupFoldingRangesForCustomDecorators(
+  private setupFoldingRangesForCustomDecorators(
     document: TextDocument,
     customMatches: Array<RegExpMatchArray>,
     decoratorMatches: Array<RegExpMatchArray>,
     decoratedMatches: Array<RegExpMatchArray>
-  ) {
+  ): Array<FoldingRange> {
     const ranges: Array<FoldingRange> = [];
     const filteredRanges: Array<FoldingRange> = [];
 
     if (!this.customRegexFromSettings) {
       window.showErrorMessage('No custom selector provided!', 'Open settings')
-      .then(res => {
-        commands.executeCommand('workbench.action.openSettings', '@ext:fstreicher.folding-decorators');
-      });
+        .then(res => {
+          commands.executeCommand('workbench.action.openSettings', '@ext:fstreicher.folding-decorators');
+        });
       return [];
     }
 
@@ -125,7 +125,7 @@ export class DecoratorFoldingRangeProvider implements FoldingRangeProvider {
 
       if (this.inlineDecoratorRegex.test(match[0])) { continue; }
 
-      let hasOtherDecorator = false;
+      const hasOtherDecorator = false;
 
       const customDecoratorPosition = document.positionAt(match.index + match[0].indexOf('@'));
       const nextDecoratorMatch = decoratorMatches.find(m => {

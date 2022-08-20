@@ -7,8 +7,8 @@ This extension allows you to collapse decorators on your classes/functions. This
 * `folding-decorators.autoFold`:\
   Enable auto-folding on file open
 * `folding-decorators.decorators`:\
-  Choose to toggle all decorators, or just the ones defined by `folding-decorators.customRegex`
-* `folding-decorators.customRegex`:\
+  Choose to toggle all decorators, or just the ones defined by `folding-decorators.customSelector`
+* `folding-decorators.customSelector`:\
   Define a RegEx-like selector to only collapse certain decorators.
 * `folding-decorators.activationDelay`:\
   Set a delay for setting the folding ranges.

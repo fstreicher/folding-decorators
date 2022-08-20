@@ -11,10 +11,10 @@ import { DecoratorFoldingRangeProvider } from './folding-provider';
 
 const sbiFold = window.createStatusBarItem(1);
 const sbiUnfold = window.createStatusBarItem(1);
-let $provider = new Disposable(() => { });
+let $provider = new Disposable(() => void 0);
 
 
-export function activate(context: ExtensionContext) {
+export function activate(context: ExtensionContext): void {
   const ACTIVATION_DELAY = workspace.getConfiguration('folding-decorators')?.get<number>('activation-delay') ?? 2000;
   setTimeout(() => setup(context), ACTIVATION_DELAY);
 
@@ -34,7 +34,7 @@ export function deactivate(): Promise<void> {
 
 
 
-function setup(context: ExtensionContext) {
+function setup(context: ExtensionContext): void {
   $provider.dispose();
 
   console.debug('Registering DecoratorFoldingRangeProvider');
@@ -57,8 +57,8 @@ function setup(context: ExtensionContext) {
 
 
 
-function setupAutoFold(context: ExtensionContext) {
-  let documents: readonly TextDocument[] = [];
+function setupAutoFold(context: ExtensionContext): void {
+  let documents: ReadonlyArray<TextDocument> = [];
 
   const disposable = window.onDidChangeVisibleTextEditors((editors) => {
     const activeEditor = window.activeTextEditor;
@@ -79,7 +79,7 @@ function setupAutoFold(context: ExtensionContext) {
 
 
 
-function foldDocument() {
+function foldDocument(): void {
   const autoFold = workspace.getConfiguration('folding-decorators')?.get<boolean>('autoFold') ?? false;
 
   if (autoFold) {
